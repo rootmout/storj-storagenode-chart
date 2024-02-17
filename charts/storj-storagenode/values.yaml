@@ -123,3 +123,6 @@ config:
 identity:
   externalSecret: {}
     # secretName: "storagenode-identity"
+  vaultSecret: {}
+    # spec:
+    #   path: "secret/data/storagenode-identity"
