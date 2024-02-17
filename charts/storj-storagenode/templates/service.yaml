@@ -3,7 +3,7 @@
 {{- $selectorLabels := include "storj-storagenode.selectorLabels" . -}}
 {{- range $name, $service := .Values.service -}}
   {{- if $service.enabled | default "true" -}}
----  
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -18,6 +18,7 @@ spec:
   {{- with $service }}
   type: {{ .type }}
   {{ if .loadBalancerIP }}loadBalancerIP: {{ .loadBalancerIP }}{{ end }}
+  {{ if .externalIPs }}externalIPs: {{ toYaml .externalIPs | nindent 2 }}{{ end }}
   ports:
     - port: {{ .port }}
       targetPort: {{ $name }}
