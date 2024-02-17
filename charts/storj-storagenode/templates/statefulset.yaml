@@ -49,6 +49,19 @@ spec:
               containerPort: 28967
               protocol: UDP
             {{- end }}
+          command:
+            - bash
+            - "-c"
+            - |
+              set -e
+              if [ ! -f /app/config/config.yaml ]; then
+                echo "Node not initialized, start in setup mode..."
+                export SETUP=true
+              else
+                echo "Node already initialized, start in run mode..."
+                export SETUP=false
+              fi
+              /entrypoint
           livenessProbe:
             tcpSocket:
               port: storagenode
