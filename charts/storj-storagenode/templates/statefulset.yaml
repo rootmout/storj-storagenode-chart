@@ -61,7 +61,7 @@ spec:
                 echo "Node already initialized, start in run mode..."
                 export SETUP=false
               fi
-              /entrypoint
+              /entrypoint --operator.wallet-features=zksync-era,zksync
           livenessProbe:
             tcpSocket:
               port: storagenode
